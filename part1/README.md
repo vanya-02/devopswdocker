@@ -43,3 +43,39 @@ Secret message is:
 Wed, 26 Aug 2020 02:05:45 GMT
 ```
 ### Exercise 1.5
+Command used to start the process (includes fix for missing curl):
+```
+flipvm@flipvm-VirtualBox:~$ docker run -it ubuntu:16.04 sh -c 'apt-get update && apt-get install -y curl;\
+> echo "Input website:";\
+> read website;\
+> echo "Searching..";\
+> sleep 1;\
+> curl http://$website;'
+```
+### Exercise 1.6
+Dockerfile:
+```
+FROM devopsdockeruh/overwrite_cmd_exercise
+CMD ["-c"]
+```
+Command used to build the image: `docker build -t docker-clock .`
+Command to run the container `docker run docker-clock`
+### Exercise 1.7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
