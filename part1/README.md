@@ -68,6 +68,7 @@ FROM devopsdockeruh/overwrite_cmd_exercise
 CMD ["-c"]
 ```
 Command used to build the image: `docker build -t curler .`
+
 Command used to run the container: `docker run --rm -it curler`
 ### Exercise 1.8
 
