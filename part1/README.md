@@ -70,5 +70,41 @@ CMD ["-c"]
 Command used to build the image: `docker build -t curler .`
 Command used to run the container: `docker run --rm -it curler`
 ### Exercise 1.8
+Commands used:
+```
+$ touch host_logs.txt
+$ docker run --rm -itv $(pwd)/host_logs.txt:/usr/app/logs.txt devopsdockeruh/first_volume_exercise
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+^C
+```
+Check logs created in our filesystem:
+```
+$ cat host_logs.txt
+Wed, 26 Aug 2020 04:22:59 GMT
+Wed, 26 Aug 2020 04:23:02 GMT
+```
+### Exercise 1.9
+```
+docker run -dp 80:80 devopsdockeruh/ports_exercise
+```
+### Exercise 1.10
+[Dockerfile](1.10/Dockerfile):
+```
+FROM ubuntu:16.04
+WORKDIR /mydir
+COPY frontend-example-docker/ .
+RUN apt-get update && apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN apt-get install -y nodejs && npm install
+EXPOSE 5000
+CMD npm start
+```
+Build and run:
+`docker build -t fr-end .`
+`docker run --rm -dp 5000:5000 fr-end`
+### Exercise 1.11
+
+
 
 
