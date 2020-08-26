@@ -64,8 +64,11 @@ Command to run the container: `docker run docker-clock`
 ### Exercise 1.7
 [Dockerfile](1.7/Dockerfile):
 ```
-FROM devopsdockeruh/overwrite_cmd_exercise
-CMD ["-c"]
+FROM ubuntu:16.04
+RUN apt-get update && apt-get install -y curl
+WORKDIR /mydir
+COPY script .
+CMD . ./script
 ```
 Command used to build the image: `docker build -t curler .`
 Command used to run the container: `docker run --rm -it curler`
