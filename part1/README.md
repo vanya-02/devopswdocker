@@ -59,19 +59,9 @@ FROM devopsdockeruh/overwrite_cmd_exercise
 CMD ["-c"]
 ```
 Command used to build the image: `docker build -t docker-clock .`
-Command to run the container `docker run docker-clock`
+
+Command to run the container: `docker run docker-clock`
 ### Exercise 1.7
-
-
-
-
-
-
-
-
-
-
-
 
 
 
