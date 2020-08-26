@@ -104,6 +104,7 @@ EXPOSE 5000
 CMD npm start
 ```
 Build and run:
+
 `docker build -t fr-end .`
 
 `docker run --rm -dp 5000:5000 fr-end`
