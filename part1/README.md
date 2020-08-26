@@ -115,7 +115,7 @@ RUN apt-get install -y nodejs && npm install
 EXPOSE 8000
 CMD npm start
 ```
-Messages written from container to (host_logs.txt)[1.11/host_logs.txt]:
+Messages written from container to [host_logs.txt](1.11/host_logs.txt):
 ```
 8/26/2020, 5:37:37 AM: Connection received in root
 8/26/2020, 5:37:39 AM: Connection received in root
