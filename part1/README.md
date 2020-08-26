@@ -53,7 +53,7 @@ flipvm@flipvm-VirtualBox:~$ docker run -it ubuntu:16.04 sh -c 'apt-get update &&
 > curl http://$website;'
 ```
 ### Exercise 1.6
-Dockerfile:
+[Dockerfile](1.6/Dockerfile):
 ```
 FROM devopsdockeruh/overwrite_cmd_exercise
 CMD ["-c"]
@@ -62,10 +62,4 @@ Command used to build the image: `docker build -t docker-clock .`
 
 Command to run the container: `docker run docker-clock`
 ### Exercise 1.7
-
-
-
-
-
-
 
