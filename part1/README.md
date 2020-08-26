@@ -105,6 +105,7 @@ CMD npm start
 ```
 Build and run:
 `docker build -t fr-end .`
+
 `docker run --rm -dp 5000:5000 fr-end`
 ### Exercise 1.11
 [Dockerfile](1.11/Dockerfile):
@@ -133,7 +134,40 @@ $ docker build -t b-end .
 $ docker run -d -p 8000:8000 -v $(pwd)/host_logs.txt:/mydir/logs.txt b-end
 ```
 ### Exercise 1.12
-
+[Dockerfile-frontend](1.12/Dockerfile-frontend):
+```
+FROM ubuntu:16.04
+WORKDIR /mydir
+COPY frontend-example-docker/ .
+RUN apt-get update && apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN apt-get install -y nodejs && npm install
+EXPOSE 5000
+ENV API_URL=http://localhost:8000
+CMD npm start
+```
+Commands used to build and run:
+```
+$ docker build -t fr-end . -f Dockerfile-frontend
+$ docker run --rm -dp 5000:5000 fr-end
+```
+[Dockerfile-backend](1.12/Dockerfile-backend):
+```
+FROM ubuntu:16.04
+WORKDIR /mydir
+COPY backend-example-docker/ .
+RUN apt-get update && apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN apt-get install -y nodejs && npm install
+EXPOSE 8000
+ENV FRONT_URL=http://localhost:5000
+CMD npm start
+```
+Commands used to build and run:
+```
+$ docker build -t b-end . -f Dockerfile-backend
+$ docker run --rm -dp 8000:8000 -v $(pwd)/host_logs.txt:/mydir/logs.txt b-end
+```
 
 
 
