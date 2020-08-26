@@ -101,11 +101,35 @@ EXPOSE 5000
 CMD npm start
 ```
 Build and run:
-
 `docker build -t fr-end .`
-
 `docker run --rm -dp 5000:5000 fr-end`
 ### Exercise 1.11
+[Dockerfile](1.11/Dockerfile):
+```
+FROM ubuntu:16.04
+WORKDIR /mydir
+COPY backend-example-docker/ .
+RUN apt-get update && apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN apt-get install -y nodejs && npm install
+EXPOSE 8000
+CMD npm start
+```
+Messages written from container to (host_logs.txt)[1.10/host_logs.txt]:
+```
+8/26/2020, 5:37:37 AM: Connection received in root
+8/26/2020, 5:37:39 AM: Connection received in root
+8/26/2020, 5:38:46 AM: Connection received in root
+8/26/2020, 5:38:47 AM: Connection received in root
+8/26/2020, 5:38:47 AM: Connection received in root
+```
+Commands used:
+```
+$ touch logs.txt
+$ docker build -t b-end .
+$ docker run -d -p 8000:8000 -v $(pwd)/host_logs.txt:/mydir/logs.txt b-end
+```
+### Exercise 1.12
 
 
 
