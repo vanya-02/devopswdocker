@@ -202,6 +202,7 @@ $ docker run --rm -dp 3000:3000 rails_ex
 ```
 ### Exercise 1.15
 DockerHub: https://hub.docker.com/r/waffle4everyone/dockerpythonclock
+
 GitHub:    https://github.com/waffle4everyone/dockerpythonclock
 ### Exercise 1.16
 
