@@ -169,6 +169,26 @@ Commands used to build and run:
 $ docker build -t b-end . -f Dockerfile-backend
 $ docker run --rm -dp 8000:8000 -v $(pwd)/host_logs.txt:/mydir/logs.txt b-end
 ```
+### Exercise 1.13
+[Dockerfile](1.13/Dockerfile):
+```
+FROM openjdk:8
+WORKDIR /mydir
+COPY spring-example-project/ .
+RUN ./mvnw package
+EXPOSE 8080
+CMD ["java","-jar","./target/docker-example-1.1.3.jar"]
+```
+Commands used for build and run:
+```
+$ docker build -t spring-ex .
+$ docker run --rm -itp 8080:8080 spring-ex
+```
+### Exercise 1.14
+
+
+
+
 
 
 
