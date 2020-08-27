@@ -205,7 +205,7 @@ DockerHub: https://hub.docker.com/r/waffle4everyone/dockerpythonclock
 
 GitHub:    https://github.com/waffle4everyone/dockerpythonclock
 ### Exercise 1.16
-Link to app waffle4devops.herokuapp.com
+Link to app `waffle4devops.herokuapp.com`
 
 ### Exercise 1.17
 Skipped exercise 1.17 (Since I'm allowed 1 skip)
