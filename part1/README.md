@@ -185,8 +185,22 @@ $ docker build -t spring-ex .
 $ docker run --rm -itp 8080:8080 spring-ex
 ```
 ### Exercise 1.14
-
-
+[Dockerfile](1.14/Dockerfile):
+```
+FROM ruby:2.6.0
+WORKDIR /mydir
+COPY rails-example-project/ .
+RUN apt-get update && apt-get install -y nodejs
+RUN bundle install && rails db:migrate
+EXPOSE 3000
+CMD ["rails","s"]
+```
+Commands used for build and run:
+```
+$ docker build -t rails_ex .
+$ docker run --rm -dp 3000:3000 rails_ex
+```
+### Exercise 1.15
 
 
 
