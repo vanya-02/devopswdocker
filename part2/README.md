@@ -57,7 +57,8 @@ services:
       - ./host_logs.txt:/mydir/logs.txt
     container_name: "back_end"
 ```
-Reused dockerfiles from 1.12:
+Reused dockerfiles from 1.12 (there's also the possibility of re-using the images built in 1.12 but I went with the former):
+
 [Dockerfile-frontend](../part1/1.12/Dockerfile-frontend):
 ```
 FROM ubuntu:16.04
