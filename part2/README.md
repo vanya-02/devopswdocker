@@ -84,7 +84,9 @@ ENV FRONT_URL=http://localhost:5000
 CMD npm start
 ```
 ### Exercise 2.4
+Command used: `dc up --scale compute=3`
 
+### Exercise 2.5
 
 
 
