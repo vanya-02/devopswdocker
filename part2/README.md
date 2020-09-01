@@ -84,15 +84,35 @@ ENV FRONT_URL=http://localhost:5000
 CMD npm start
 ```
 ### Exercise 2.4
-Command used: `dc up --scale compute=3`
+Command used: `docker-compose up --scale compute=3`
 
 ### Exercise 2.5
+[docker-compose.yml](2.5/docker-compose.yml):
+```
+version: '3.5'
 
+services:
+  front_end:
+    image: fr-end
+    ports:
+      - 5000:5000
+    container_name: "front_end"
 
+  back_end:
+    image: b-end
+    ports:
+      - 8000:8000
+    volumes:
+      - ./host_logs.txt:/mydir/logs.txt
+    container_name: "back_end"
+    environment:
+      - REDIS=redis
+      - REDIS_PORT=6379
 
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+```
 
-
-
-
-
-
+### Exercise 2.6
