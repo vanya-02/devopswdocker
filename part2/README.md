@@ -115,4 +115,5 @@ services:
       - 6379:6379
 ```
 
+Used images "fr-end" and "b-end" were built previously from the Dockerfiles in 2.3 and reused here.
 ### Exercise 2.6
