@@ -117,3 +117,46 @@ services:
 
 Used images "fr-end" and "b-end" were built previously from the Dockerfiles in 2.3 and reused here.
 ### Exercise 2.6
+[docker-compose.yml](2.6/docker-compose.yml):
+```
+version: '3.5'
+
+services:
+
+  front_end:
+    image: fr-end
+    ports:
+      - 5000:5000
+    container_name: "front_end"
+
+  back_end:
+    image: b-end
+    ports:
+      - 8000:8000
+    container_name: "back_end"
+    volumes:
+      - ./host_logs.txt:/mydir/logs.txt
+    environment:
+      - REDIS=redis
+      - REDIS_PORT=6379
+      - DB_USERNAME=user
+      - DB_PASSWORD=password
+      - DB_HOST=postgresql
+
+  redis:
+    image: redis
+    container_name: "redis"
+    ports:
+      - 6379:6379
+
+  postgresql:
+    image: postgres
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    container_name: "postgresql"
+```
+
+Images for Front-end and Back-end were prior built in 1.12
+
+
