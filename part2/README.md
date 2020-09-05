@@ -160,3 +160,41 @@ services:
 Images for Front-end and Back-end were prior built in 1.12
 
 
+### Exercise 2.7
+[docker-compose.yml](2.7/docker-compose.yml):
+```
+version: '3.5'
+
+volumes:
+  model:
+  imgs:
+  data:
+
+services:
+  front-end:
+    image: ml-kurkkumopo-frontend
+    build: ./ml-kurkkumopo-frontend
+    ports:
+      - 3000:3000
+     
+  back-end:
+    image: ml-kurkkumopo-backend
+    build: ./ml-kurkkumopo-backend
+    ports:
+      - 5000:5000
+    restart: unless-stopped
+    depends_on:
+      - training
+    volumes:
+      - model:/src/model
+
+  training:
+    image: ml-kurkkumopo-training
+    build: ./ml-kurkkumopo-training
+    restart: on-failure
+    volumes:
+      - model:/src/model
+      - imgs:/src/imgs
+      - data:/src/data
+```
+### Exercise 2.8
