@@ -343,4 +343,84 @@ services:
 ```
 
 ### Exercise 2.10
+Everything was already working in Ex2.9, so the docker-compose and dockerfiles are the latest ones from above:
 
+[docker-compose.yml](2.9/docker-compose.yml):
+```
+version: '3.5'
+
+services:
+
+  front_end:
+    image: fr-end
+    ports:
+      - 5000:5000
+    container_name: "front_end"
+    
+
+  back_end:
+    image: b-end
+    ports:
+      - 8000:8000
+    container_name: "back_end"
+    volumes:
+      - ./host_logs.txt:/mydir/logs.txt
+    environment:
+      - FRONT_URL=http://localhost
+      - REDIS=redis
+      - REDIS_PORT=6379
+      - DB_USERNAME=user
+      - DB_PASSWORD=password
+      - DB_HOST=postgresql
+      
+
+  redis:
+    image: redis
+    container_name: "redis"
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis.data:/data
+
+  postgresql:
+    image: postgres
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    container_name: "postgresql"
+    volumes:
+      - ./postgre.data:/var/lib/postgresql/data
+
+  nginx:
+    image: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    restart: unless-stopped
+```
+[Dockerfile-frontend](../part1/1.12/Dockerfile-frontend):
+```
+FROM ubuntu:16.04
+WORKDIR /mydir
+COPY frontend-example-docker/ .
+RUN apt-get update && apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN apt-get install -y nodejs && npm install
+EXPOSE 5000
+ENV API_URL=http://localhost:8000
+CMD npm start
+```
+
+[Dockerfile-backend](../part1/1.12/Dockerfile-backend):
+```
+FROM ubuntu:16.04
+WORKDIR /mydir
+COPY backend-example-docker/ .
+RUN apt-get update && apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN apt-get install -y nodejs && npm install
+EXPOSE 8000
+ENV FRONT_URL=http://localhost:5000
+CMD npm start
+```
